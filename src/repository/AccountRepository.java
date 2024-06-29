@@ -1,6 +1,6 @@
 package repository;
 
-import domain.Account;
+import domain.Account.Account;
 import java.util.List;
 
 public interface AccountRepository {
