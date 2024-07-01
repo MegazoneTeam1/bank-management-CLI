@@ -2,6 +2,7 @@ package service;
 
 import domain.Account.Account;
 import domain.User;
+import repository.AccountRepository;
 import repository.AccountRepositoryImpl;
 import view.AccountView;
 import java.util.ArrayList;
@@ -10,8 +11,13 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     final static private int ACCOUNTLENGTH = 1000000000;
     final static private int PWLENGTH = 4;
-    AccountView accountView = new AccountView();
-    AccountRepositoryImpl accountRepository = new AccountRepositoryImpl();
+    private AccountView accountView;
+    private AccountRepositoryImpl accountRepository;
+
+    public AccountServiceImpl() {
+        this.accountRepository = new AccountRepositoryImpl();
+        this.accountView = new AccountView();
+    }
 
     @Override
     public boolean createAccount(Account account) {
@@ -22,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
         setAccountNum(account);
 
         //비밀번호 사용자에게서 받기
-        String password = getPwToUser();
+        String password = getPasswordToUser();
 
         //비밀번호 삽입
         account.setPassword(password);
@@ -55,21 +61,21 @@ public class AccountServiceImpl implements AccountService {
     public String checkPasswordLength(String password){
         while(password.length() != PWLENGTH){
             //다시 입력
-            password = accountView.printPwAgain();
+            password = accountView.printPasswordAgain();
         }
         return password;
     }
     /**@비밀번호를 사용자로부터 받기*/
-    public String getPwToUser(){
-        String password = accountView.printPw();
+    public String getPasswordToUser(){
+        String password = accountView.printPassword();
         return checkPasswordLength(password);
     }
     /**@비밀번호 재확인*/
     public boolean checkPasswordAgain(String password) {
-        String checkPw = accountView.printCheckPw();
-        while(!checkPw.equals(password)){
-            accountView.wrongPw();
-            checkPw = accountView.printCheckPw();
+        String checkPassword = accountView.printCheckPassword();
+        while(!checkPassword.equals(password)){
+            accountView.wrongPassword();
+            checkPassword = accountView.printCheckPassword();
         }
         return true;
     }
