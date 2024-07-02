@@ -3,8 +3,8 @@ package domain.Account;
 public class Account {
     private final String accountNumber;
     private final String password;
-    private final String name;
-    private final double balance;
+    private String name;
+    private double balance;
     private final String userId;
 
 
@@ -22,4 +22,5 @@ public class Account {
     public String getUserId() {return userId;}
     public String getName() {return name;}
 
+    public void setName(String name) {this.name = name;}
 }
