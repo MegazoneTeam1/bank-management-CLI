@@ -1,11 +1,11 @@
 package domain.Account;
 
 public class Account {
-    private String accountNumber;
-    private String password;
-    private String name;
-    private double balance;
-    private String userId;
+    private final String accountNumber;
+    private final String password;
+    private final String name;
+    private final double balance;
+    private final String userId;
 
 
     protected Account(String accountNumber, String password, String name, String userId) {
