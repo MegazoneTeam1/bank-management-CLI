@@ -7,6 +7,6 @@ public interface AccountRepository {
     void save(Account account);
     Account findByAccountNumber(String accountNumber);
     List<Account> findAllByUserId(String userId);
-    void update(Account account);
+    void update(String accountNumber,String changeName);
 
 }
