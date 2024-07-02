@@ -2,7 +2,6 @@ package service;
 
 import domain.Account.Account;
 import domain.Account.AccountBuilder;
-import domain.User;
 import repository.AccountRepositoryImpl;
 import view.AccountView;
 import java.util.ArrayList;
@@ -37,6 +36,7 @@ public class AccountServiceImpl implements AccountService {
 
         //계좌생성, 계좌저장소에 저장소
         accountRepository.save(account.build());
+        accountView.printAccountCreateSuccess();
         return false;
     }
 
