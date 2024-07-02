@@ -5,7 +5,7 @@ public class AccountView {
     public void startPrint(){
         PrintUtil.println("계좌를 생성하겠습니다.");
     }
-    public String printGetAccountNumber(){
+    public String startGetAccountNumber(){
         return PrintUtil.readLine("변경하고 싶은 게좌번호를 입력해주세요 : ");
     }
 
@@ -33,5 +33,5 @@ public class AccountView {
     public String printSetName(){
         return PrintUtil.readLine("계좌의 이름을 적어주세요 : ");
     }
-
+    public void printNullError(){PrintUtil.println("NULL : 없습니다.");}
 }

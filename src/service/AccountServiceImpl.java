@@ -117,9 +117,15 @@ public class AccountServiceImpl implements AccountService {
     }
     /**계좌이름 변경*/
     public void update() {
-        String accountNumber= accountView.printGetAccountNumber();
-        String changeName = accountView.printSetName();
+
+        String accountNumber= accountView.startGetAccountNumber();
         Account account = accountRepository.findByAccountNumber(accountNumber);
+        try{
+            account.getName();
+        }catch(NullPointerException e){
+            accountView.printNullError();
+        }
+        String changeName = accountView.printSetName();
         account.setName(changeName);
     }
 
