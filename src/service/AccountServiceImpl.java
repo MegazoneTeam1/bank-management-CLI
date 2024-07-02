@@ -12,8 +12,8 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     final static private int ACCOUNTLENGTH = 1000000000;
     final static private int PWLENGTH = 4;
-    private AccountView accountView;
-    private AccountRepositoryImpl accountRepository;
+    private final AccountView accountView;
+    private final AccountRepositoryImpl accountRepository;
 
     public AccountServiceImpl() {
         this.accountRepository = new AccountRepositoryImpl();
@@ -41,14 +41,27 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    //아직 미구현
+    //계좌의 잔액
     public List<Account> getAccountsByUserId(String userId) {
         List<Account> accounts = new ArrayList<>();
-        return List.of( );
+        /** 유저가 가진 계좌 리스트 저장*/
+        accounts=accountRepository.findAllByUserId(userId);
+        return accounts;
     }
-    //아직 미구현
+
+    /**총 잔액*/
     @Override
     public double getTotalBalance(String userId) {
+        accountView.startBalancePrint(userId);
+        Double totalBalance=0.0;
+        List<Account> accounts = getAccountsByUserId(userId);
+        Iterator<Account> accountsIterator = accounts.iterator();
+        while(accountsIterator.hasNext()) {
+            Account account = accountsIterator.next();
+            accountView.printBalance(account.getAccountNumber(),account.getBalance());
+            totalBalance+=account.getBalance();
+        }
+        accountView.printTotalBalance(totalBalance);
         return 0;
     }
 
