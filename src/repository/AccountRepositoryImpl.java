@@ -26,12 +26,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     public List<Account> findAllByUserId(String userId) {
         return accounts.stream().filter(account -> account.getUserId().equals(userId)).collect(Collectors.toList());
     }
-    /**계좌 이름 변경*/
-    @Override
-    public void update(String accountNumber,String changeName) {
-        Account account = findByAccountNumber(accountNumber);
-        account.setName(changeName);
-    }
+
 
 
 }
