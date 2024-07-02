@@ -119,7 +119,8 @@ public class AccountServiceImpl implements AccountService {
     public void update() {
         String accountNumber= accountView.printGetAccountNumber();
         String changeName = accountView.printSetName();
-        accountRepository.update(accountNumber,changeName);
+        Account account = accountRepository.findByAccountNumber(accountNumber);
+        account.setName(changeName);
     }
 
 
