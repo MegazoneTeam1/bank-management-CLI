@@ -1,9 +1,7 @@
 package view;
 
-import domain.Account;
-
-public class AccountView {
-    public void showAccount() {
+public class Banking {
+    public void bankingservice() {
 
         String[] options = {"계좌 생성", "계좌 조회", "잔액 조회", "입금", "출금","로그아웃"};
 
