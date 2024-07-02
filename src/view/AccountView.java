@@ -1,12 +1,14 @@
 package view;
 
-import java.util.Scanner;
-
 public class AccountView {
 
     public void startPrint(){
         PrintUtil.println("계좌를 생성하겠습니다.");
     }
+    public String printGetAccountNumber(){
+        return PrintUtil.readLine("변경하고 싶은 게좌번호를 입력해주세요 : ");
+    }
+
     public void printAccount(int accountNumber){
         PrintUtil.println("생성된 계좌번호는 "+accountNumber +" 입니다.");
     }
@@ -27,5 +29,9 @@ public class AccountView {
     public void startBalancePrint(String userId) {PrintUtil.println(userId+"의 잔액조회입니다.");}
     public void printBalance(String accountNumber,Double balance) { PrintUtil.println(accountNumber+"의 잔액은 "+balance); }
     public void printTotalBalance(Double totalBalance) {PrintUtil.println("  총 액은 "+totalBalance+"입니다.");}
+
+    public String printSetName(){
+        return PrintUtil.readLine("계좌의 이름을 적어주세요 : ");
+    }
 
 }
