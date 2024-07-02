@@ -25,6 +25,9 @@ public class AccountServiceImpl implements AccountService {
         //계좌 10자리 랜덤 생성
         setAccountNumber(account);
 
+        //계좌 이름 지정
+        accountNameSet(account);
+
         //비밀번호 사용자에게서 받기
         String password = getPasswordToUser();
 
@@ -41,10 +44,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    //계좌의 잔액
+    /**계좌의 잔액*/
     public List<Account> getAccountsByUserId(String userId) {
         List<Account> accounts = new ArrayList<>();
-        /** 유저가 가진 계좌 리스트 저장*/
         accounts=accountRepository.findAllByUserId(userId);
         return accounts;
     }
@@ -53,7 +55,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public double getTotalBalance(String userId) {
         accountView.startBalancePrint(userId);
-        Double totalBalance=0.0;
+        double totalBalance=0.0;
         List<Account> accounts = getAccountsByUserId(userId);
         Iterator<Account> accountsIterator = accounts.iterator();
         while(accountsIterator.hasNext()) {
@@ -62,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
             totalBalance+=account.getBalance();
         }
         accountView.printTotalBalance(totalBalance);
-        return 0;
+        return totalBalance;
     }
 
 
@@ -85,13 +87,12 @@ public class AccountServiceImpl implements AccountService {
         return checkPasswordLength(password);
     }
     /**비밀번호 재확인*/
-    public boolean checkPasswordAgain(String password) {
+    public void checkPasswordAgain(String password) {
         String checkPassword = accountView.printCheckPassword();
         while(!checkPassword.equals(password)){
             accountView.wrongPassword();
             checkPassword = accountView.printCheckPassword();
         }
-        return true;
     }
    /**계좌 생성에 삽입*/
     public void setAccountNumber(AccountBuilder account){
@@ -108,8 +109,18 @@ public class AccountServiceImpl implements AccountService {
             accountNumber = (int) (Math.random() * ACCOUNTLENGTH)+ACCOUNTLENGTH;
         }while (checkAccountNum(String.valueOf(accountNumber)));
         return String.valueOf(accountNumber);
-
-
     }
+    /**계좌이름 유저에게 받기*/
+    public void accountNameSet(AccountBuilder account){
+        String nameAccount = accountView.printSetName();
+        account.name(nameAccount).build();
+    }
+    /**계좌이름 변경*/
+    public void update() {
+        String accountNumber= accountView.printGetAccountNumber();
+        String changeName = accountView.printSetName();
+        accountRepository.update(accountNumber,changeName);
+    }
+
 
 }
