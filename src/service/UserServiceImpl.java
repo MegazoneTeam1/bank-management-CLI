@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserServiceImpl implements UserService{
-
     private Map<String,User> userStore = new HashMap<>();
     @Override
     public void updatePhoneNumber (User user, String newPhoneNumber) {

@@ -15,8 +15,15 @@ public class Transaction {
         this.type = type;
     }
     public String getAccountNumber() {  return accountNumber; }
-    public double getAmount() {  return amount; }
+    public String setAccountNumber(String accountNumber) {return this.accountNumber = accountNumber;}
+
+    public double getAmount() { return amount; }
+    public double setAmount(double amount) { return amount; }
+
     public LocalDate getDate() {  return date;}
+    public LocalDate setDate(LocalDate date) { return date; }
+
     public String getType() {  return type; }
+    public String setType(String type) { return this.type = type; }
 
 }
