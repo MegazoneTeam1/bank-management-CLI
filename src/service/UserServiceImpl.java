@@ -7,25 +7,32 @@ import view.Banking;
 import view.MainMenu;
 import view.UserView;
 
-
 public class UserServiceImpl implements UserService {
 
     UserRepository userRepository = new UserRepositoryImpl();
     Banking banking = new Banking();
     UserView userView = new UserView();
+    MainMenu mainMenu = new MainMenu();
 
 
-    /** 사용자 등록시 아이디가 있으면
-     * false 로 반환하여 사용자 등록 실패, 아니면 true 반환하여 사용자 등록 */
+    /**
+     *
+     * @param user 를 List에 저장
+     * @return true를 반환하여 사용자 등록
+     */
     @Override
     public boolean registerUser(User user) {
         userRepository.save(user);
         return true;
 
     }
-    /** 사용자의 아이디가 있을 때
-     * 사용자가 null 이 아니고 사용자의 비밀번호가 입력받은 비밀번호와 같으면 로그인 성공
-     * 없을경우 null 을 반환하여 로그인 실패*/
+
+    /**
+     *
+     * @param id
+     * @param password
+     * @return
+     */
     @Override
     public User login(String id, String password) {
         User user = userRepository.findById(id);
@@ -35,7 +42,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    /***/
+    /**
+     *
+     * @param user
+     * @return
+     */
     @Override
     public boolean updateUser(User user) {
         return true;
@@ -49,7 +60,7 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    public void signup() {
+    public void signUp() {
         String name = null;
         while (true) {
             name = userView.inputName();
@@ -62,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
         String phoneNumber = null;
         while (true) {
-            phoneNumber = userView.inputphoneNumber();
+            phoneNumber = userView.inputPhoneNumber();
             if(phoneNumber.isEmpty()) {
                 userView.reEnter();
             } else {
@@ -107,8 +118,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void loginMenu() {
-
-
         String id = userView.inputId();
         String password = userView.inputPassword();
         /** 입력받은 id와 password 를 통해 로그인 성공 실패 확인. */
@@ -119,6 +128,53 @@ public class UserServiceImpl implements UserService {
             return;
         } else
             userView.successLogin();
-        banking.bankingservice();
+        accountPage();
+    }
+
+
+    public void mainPage() {
+
+        while (true) {
+            int choice = mainMenu.showMenu();
+            switch (choice) {
+                case 1:
+                    signUp();
+                    break;
+                case 2:
+                    loginMenu();
+                    break;
+                case 3:
+                    return;
+                default:
+                    userView.wrongInput();
+                    userView.blank();
+
+            }
+        }
+    }
+
+    public void accountPage() {
+        while (true) {
+            int choice = banking.bankingService();
+            switch (choice) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    return;
+                default:
+                    userView.wrongInput();
+                    userView.blank();
+            }
+        }
     }
 }
+
+
