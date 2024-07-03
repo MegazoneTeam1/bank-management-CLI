@@ -1,31 +1,12 @@
 package view;
 
-import service.UserServiceImpl;
-
 public class MainMenu {
 
-    UserServiceImpl userService = new UserServiceImpl();
-    UserView userView = new UserView();
-    public void showMenu() {
+    public int showMenu() {
         String[] options = {"회원가입", "로그인", "종료"};
-        while (true) {
-            PrintUtil.println("은행 관리 시스템");
-            PrintUtil.displayMenu(options);
-            int choice = PrintUtil.readInt("메뉴를 선택해주세요: ");
-            switch (choice) {
-                case 1:
-                    userService.signup();
-                    break;
-                case 2:
-                    userService.loginMenu();
-                    break;
-                case 3:
-                    return;
-                default:
-                    PrintUtil.println("잘못된 입력입니다.");
-                    PrintUtil.println("");
-            }
-        }
+        PrintUtil.println("은행 관리 시스템");
+        PrintUtil.displayMenu(options);
+        return PrintUtil.readInt("메뉴를 선택해주세요: ");
     }
 
 }
