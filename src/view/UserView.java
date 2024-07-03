@@ -1,8 +1,5 @@
 package view;
 
-import service.UserService;
-import service.UserServiceImpl;
-
 public class UserView {
 
     public void reEnter() {
@@ -13,7 +10,7 @@ public class UserView {
         return PrintUtil.readLine("이름: ");
     }
 
-    public String inputphoneNumber() {
+    public String inputPhoneNumber() {
         return PrintUtil.readLine("전화번호: ");
     }
 
@@ -47,6 +44,14 @@ public class UserView {
 
     public void failLogin() {
         PrintUtil.println("로그인에 실패했습니다. 아이디나 비밀번호가 일치하지 않습니다.");
+    }
+
+    public void wrongInput() {
+        PrintUtil.println("잘못된 입력입니다.");
+    }
+
+    public void blank() {
+        PrintUtil.println("");
     }
 
 
