@@ -6,6 +6,7 @@ import repository.AccountRepositoryImpl;
 import repository.TransactionRepository;
 import repository.TransactionRepositoryImpl;
 import view.DepositeView;
+import view.PrintUtil;
 
 import java.util.List;
 
@@ -13,59 +14,42 @@ public class TransactionServiceImpl implements TransactionService {
 
      private static DepositeView depositeView;
      private static TransactionRepositoryImpl transactionRepository;
-    Transaction transaction = new Transaction();
+    Transaction transaction ;
     Account account= new Account();
 
 
-    public TransactionServiceImpl(DepositeView depositeView, TransactionRepositoryImpl transactionRepository) {
-        this.depositeView = depositeView;
-        this.transactionRepository = transactionRepository;
-    }
 
-    public TransactionServiceImpl() {
-
-    }
 
     @Override
     public boolean deposit(String accountNumber, double amount) {
 
-        // 입금 시작
-        depositeView.startDeposite();
-        // 입금 계좌 금액 입력
-        depositeView.depositeAccount(accountNumber);
-        depositeView.depositeAmount(amount);
-
+        // 저장소의 계좌번호와 입력의 계좌번호가 같으면, balance = balance + 입금액
         if(account.getAccountNumber().equals(accountNumber)){
             account.setBalance(account.getBalance() + amount);
         }
+        // 저장소에 저장
         transactionRepository.save(transaction);
-        depositeView.depositsuccess();
-
         return false;
     }
 
+    // 출금
     @Override
     public boolean withdraw(String accountNumber, String password, double amount) {
-        depositeView.withdrawAccount(accountNumber);
-        depositeView.withdrawPassword(password);
-        depositeView.withdrawAmount(amount);
 
         if(account.getAccountNumber().equals(accountNumber) && account.getPassword().equals(password)){
             if(account.getBalance() >= amount) {
                 account.setBalance(account.getBalance() - amount);
             }
         }
-        depositeView.withdrawSuccess();
         return false;
     }
 
-
-
     @Override
     public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
-
-        return null;
+         return null ;
     }
+
+
 
 
 }
