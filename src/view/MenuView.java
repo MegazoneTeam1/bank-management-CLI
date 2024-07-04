@@ -1,6 +1,6 @@
 package view;
 
-public class MainMenu {
+public class MenuView {
 
     public int showMenu() {
         String[] options = {"회원가입", "로그인", "회원정보수정", "종료"};
