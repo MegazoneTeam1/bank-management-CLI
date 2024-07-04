@@ -2,8 +2,6 @@ package service;
 
 import domain.Account;
 import domain.Transaction;
-import repository.AccountRepositoryImpl;
-import repository.TransactionRepository;
 import repository.TransactionRepositoryImpl;
 import view.Banking;
 import view.DepositeView;
@@ -13,8 +11,8 @@ import java.util.List;
 
 public class TransactionServiceImpl implements TransactionService {
 
-     private static DepositeView depositeView = new DepositeView();
-     private static TransactionRepositoryImpl transactionRepository;
+     private final static DepositeView depositeView = new DepositeView();
+     private static TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
     Transaction transaction ;
     Account account= new Account();
     Banking banking = new Banking();
