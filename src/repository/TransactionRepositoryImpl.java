@@ -13,8 +13,6 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         transactions.add(transaction);
     }
 
-    // 스트림 연산에 String type()을 판별하는 중간연산을 삽입해야 함
-    //          (입금 & 출금)
     @Override
         public List<Transaction> findTransactionsByAccountNumber(String accountNumber) {
             return transactions.stream().filter(transaction -> transaction.getAccountNumber().equals(accountNumber)).toList();

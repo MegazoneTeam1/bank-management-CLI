@@ -9,8 +9,6 @@ public interface UserRepository {
 
     User findById(String id);
 
-    void update(User user);
-
     List<User> findAll();
 
 }
