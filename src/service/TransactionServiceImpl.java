@@ -8,34 +8,36 @@ import view.Banking;
 import view.DepositeView;
 import view.PrintUtil;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class TransactionServiceImpl implements TransactionService {
 
      private final static DepositeView depositeView = new DepositeView();
-     private final static TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
-    private final Transaction transaction = new Transaction() ;
+    TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
 
     AccountRepositoryImpl accountRepository = new AccountRepositoryImpl();
     private final Banking banking = new Banking();
 
 
-
+    // 입금
     @Override
     public boolean deposit(String accountNumber, double amount) {
         Account account = accountRepository.findByAccountNumber(accountNumber);
-        // 저장소의 계좌번호와 입력의 계좌번호가 같으면, balance = balance + 입금액
         if(account != null){
             account.setBalance(account.getBalance()+amount);
-            transactionRepository.save(transaction);
+            accountRepository.save(account);
             depositeView.depositsuccess();
-            PrintUtil.println("계좌번호: "+account.getAccountNumber() + "  잔고: " + (int)account.getBalance());
+            LocalDate nowDate =LocalDate.now();
+            Transaction depoTrans = new Transaction(accountNumber,amount, nowDate , "입금");
+            transactionRepository.save(depoTrans);
+            PrintUtil.println(depoTrans.toString());
         } else{
             depositeView.nonSuccessDeposite();
         }
-        // 저장소에 저장
         return false;
     }
+
 
     // 출금
     @Override
@@ -45,8 +47,10 @@ public class TransactionServiceImpl implements TransactionService {
             if(account.getPassword().equals(password)){
                 account.setBalance(account.getBalance() - amount);
                 depositeView.withdrawSuccess();
-                PrintUtil.println("계좌번호: "+account.getAccountNumber() + "  잔고: " + (int)account.getBalance());
-
+                LocalDate nowDate = LocalDate.now();
+                Transaction withdrTrans = new Transaction(accountNumber,-amount,nowDate,"출금");
+                transactionRepository.save(withdrTrans);
+                PrintUtil.println(withdrTrans.toString());
             } else {
                 depositeView.nonEqualPassword();
             }
@@ -56,13 +60,14 @@ public class TransactionServiceImpl implements TransactionService {
         return false;
     }
 
+    // 미구현
     @Override
     public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
          return null ;
     }
 
+    // 입금, 출금 실행
     public void service() {
-
         switch (banking.bankingService()) {
             case 1:
                 break;
@@ -75,7 +80,6 @@ public class TransactionServiceImpl implements TransactionService {
                 String depoAccount = depositeView.depositeAccount();
                 int depoAmount = depositeView.depositeAmount();
                 deposit(depoAccount,depoAmount);
-
                 break;
             case 5:  //출금
                 depositeView.startWithdraw();
@@ -89,7 +93,6 @@ public class TransactionServiceImpl implements TransactionService {
             default:
                 PrintUtil.println("잘못된 입력입니다.");
                 PrintUtil.println("");
-
         }
     }
 }

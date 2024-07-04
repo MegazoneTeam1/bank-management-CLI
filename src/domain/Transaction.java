@@ -4,12 +4,30 @@ import java.time.LocalDate;
 
 public class Transaction {
 
-    private String accountNumber;
+    private final String accountNumber;
     private double amount;
     private LocalDate date;
     private String type;
 
     public String getAccountNumber() {
         return accountNumber;
+    }
+
+
+    public Transaction(String accountNumber, double amount, LocalDate date, String type) {
+        this.accountNumber = accountNumber;
+        this.amount = amount;
+        this.date = date;
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "거래내역  [ " +
+                "계좌번호 : '" + accountNumber + '\'' +
+                ", 금액 : " + (int)amount +
+                ", 날짜 : " + date +
+                ", 타입 : '" + type + '\'' +
+                ']';
     }
 }
