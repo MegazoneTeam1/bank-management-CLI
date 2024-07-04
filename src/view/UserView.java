@@ -48,11 +48,6 @@ public class UserView {
 
     public void wrongInput() {
         PrintUtil.println("잘못된 입력입니다.");
-    }
-
-    public void blank() {
         PrintUtil.println("");
     }
-
-
 }
