@@ -8,7 +8,7 @@ public class Account {
     private final String userId;
 
 
-    protected Account(String accountNumber, String password, String name, String userId) {
+    public Account(String accountNumber, String password, String name, String userId) {
         this.accountNumber = accountNumber;
         this.password = password;
         this.name = name;
@@ -19,6 +19,11 @@ public class Account {
     public String getAccountNumber() {return accountNumber;}
     public String getPassword() {return password;}
     public double getBalance() {return balance;}
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public String getUserId() {return userId;}
     public String getName() {return name;}
 

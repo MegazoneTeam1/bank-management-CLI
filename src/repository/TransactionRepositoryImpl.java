@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionRepositoryImpl implements  TransactionRepository{
-    private static List<Transaction> transactions = new ArrayList<>();
+    private static final List<Transaction> transactions = new ArrayList<>();
     @Override
     public void save(Transaction transaction) {
         transactions.add(transaction);

@@ -9,4 +9,7 @@ public class Transaction {
     private LocalDate date;
     private String type;
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 }
