@@ -13,7 +13,7 @@ public class TransactionServiceImpl implements TransactionService {
 
      private final static DepositeView depositeView = new DepositeView();
      private final static TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
-    private Transaction transaction ;
+    private final Transaction transaction = new Transaction() ;
     private final Account account= new Account();
     private final Banking banking = new Banking();
 
