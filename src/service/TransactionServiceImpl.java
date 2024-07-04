@@ -5,6 +5,7 @@ import domain.Transaction;
 import repository.AccountRepositoryImpl;
 import repository.TransactionRepository;
 import repository.TransactionRepositoryImpl;
+import view.Banking;
 import view.DepositeView;
 import view.PrintUtil;
 
@@ -12,11 +13,11 @@ import java.util.List;
 
 public class TransactionServiceImpl implements TransactionService {
 
-     private static DepositeView depositeView;
+     private static DepositeView depositeView = new DepositeView();
      private static TransactionRepositoryImpl transactionRepository;
     Transaction transaction ;
     Account account= new Account();
-
+    Banking banking = new Banking();
 
 
 
@@ -35,7 +36,6 @@ public class TransactionServiceImpl implements TransactionService {
     // 출금
     @Override
     public boolean withdraw(String accountNumber, String password, double amount) {
-
         if(account.getAccountNumber().equals(accountNumber) && account.getPassword().equals(password)){
             if(account.getBalance() >= amount) {
                 account.setBalance(account.getBalance() - amount);
@@ -49,7 +49,36 @@ public class TransactionServiceImpl implements TransactionService {
          return null ;
     }
 
+    public void service() {
 
+        switch (banking.bankingService()) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:  //입금
+                depositeView.startDeposite();
+                String depoAccount = depositeView.depositeAccount();
+                int depoAmount = depositeView.depositeAmount();
+                deposit(depoAccount,depoAmount);
+                depositeView.depositsuccess();
+                break;
+            case 5:  //출금
+                depositeView.startWithdraw();
+                String wdAccount = depositeView.withdrawAccount();
+                String wdPassword = depositeView.withdrawPassword();
+                int wdAmount = depositeView.withdrawAmount();
+                withdraw(wdAccount,wdPassword,wdAmount);
+                depositeView.withdrawSuccess();
+                break;
+            case 6:
+                return;
+            default:
+                PrintUtil.println("잘못된 입력입니다.");
+                PrintUtil.println("");
 
-
+        }
+    }
 }
