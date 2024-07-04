@@ -12,7 +12,7 @@ import java.util.List;
 public class TransactionServiceImpl implements TransactionService {
 
      private final static DepositeView depositeView = new DepositeView();
-     private static TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
+     private final static TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
     Transaction transaction ;
     Account account= new Account();
     Banking banking = new Banking();
