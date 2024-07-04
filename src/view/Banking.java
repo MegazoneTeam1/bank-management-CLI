@@ -9,7 +9,7 @@ public class Banking {
         PrintUtil.println("");
         PrintUtil.println("계좌 관리 시스템");
         PrintUtil.displayMenu(options);
-        return PrintUtil.readInt("뭐할거임?");
+        return PrintUtil.readInt("요청할 작업을 선택해주세요");
 
     }
 

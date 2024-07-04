@@ -37,9 +37,13 @@ public class DepositeView {
     // 입금 성공
     public void depositsuccess(){
          PrintUtil.println("입금이 성공적으로 되었습니다.");
-
     }
-
+    public void nonSuccessDeposite(){
+        PrintUtil.println("계좌가 존재하지 않습니다.");
+    }
+    public void nonEqualPassword(){
+        PrintUtil.println("비밀번호가 일치하지 않습니다");
+    }
     // 출금 성공
     public void withdrawSuccess(){
         PrintUtil.println("출금이 성공적으로 되었습니다.");
