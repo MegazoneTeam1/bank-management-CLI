@@ -12,7 +12,15 @@ public class Transaction {
     public String getAccountNumber() {
         return accountNumber;
     }
-
+    public String getType() {
+        return type; 
+    }
+    public LocalDate getDate() {
+        return date;
+    }
+    public double getAmount() {
+        return amount; 
+    }
 
     public Transaction(String accountNumber, double amount, LocalDate date, String type) {
         this.accountNumber = accountNumber;
@@ -30,4 +38,5 @@ public class Transaction {
                 ", 타입 : '" + type + '\'' +
                 ']';
     }
+
 }

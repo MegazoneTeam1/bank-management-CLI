@@ -2,6 +2,7 @@ package service;
 
 import domain.Account.Account;
 import domain.Transaction;
+
 import repository.AccountRepositoryImpl;
 import repository.TransactionRepositoryImpl;
 import view.Banking;
@@ -60,10 +61,29 @@ public class TransactionServiceImpl implements TransactionService {
         return false;
     }
 
-    // 미구현
+    // 계좌번호에 따른 거래내역 조회 메소드
     @Override
     public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
-         return null ;
+        List<Transaction> transactionHistory = transactionRepository.findTransactionsByAccountNumber(accountNumber);
+        for(Transaction transaction : transactionHistory) {
+            transactionView.transactionHistoryPrint(transaction);
+        }
+        return transactionHistory;
+    }
+  
+    // 사용자의 계좌 정보를 accountRepository 에서 가져오고
+    // 계좌정보 저장소가 비어있거나 계좌가 없을 경우 아래와 같은 출력문을 출력,
+    public List<Account> findAccountsByUser(String userId) {
+        List<Account> accountStore = accountRepository.findAllByUserId(userId);
+        if (accountStore.isEmpty()) {
+            System.out.println("존재하지 않는 계좌정보 입니다.");
+        } else {
+            // 존재할 경우 계좌를 출력함.
+            for (Account account : accountStore) {
+                System.out.println(account.getAccountNumber());
+            }
+        }
+        return accountStore;
     }
 
     // 입금, 출금 실행
