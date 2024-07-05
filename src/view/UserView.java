@@ -46,6 +46,15 @@ public class UserView {
         PrintUtil.println("로그인에 실패했습니다. 아이디나 비밀번호가 일치하지 않습니다.");
     }
 
+    public String updatePhoneNumberPrint() {
+        return PrintUtil.readLine("새 전화번호를 입력 : ");
+    }
+
+    public String updatePasswordPrint() {
+        return PrintUtil.readLine("새 비밀번호를 입력 : ");
+    }
+    public void updateUserPrint() {PrintUtil.println("업데이트 완료되었습니다."); }
+
     public void wrongInput() {
         PrintUtil.println("잘못된 입력입니다.");
         PrintUtil.println("");

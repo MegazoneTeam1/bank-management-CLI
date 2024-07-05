@@ -1,9 +1,9 @@
-import view.ViewExample;
+import service.Client;
 
 public class Main {
     public static void main(String[] args) {
-        ViewExample viewExample = new ViewExample();
-        viewExample.showMenu();
+        Client client = new Client();
+        client.mainPage();
 
     }
 

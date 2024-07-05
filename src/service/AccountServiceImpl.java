@@ -44,29 +44,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    /**계좌의 잔액*/
-    public List<Account> getAccountsByUserId(String userId) {
-        List<Account> accounts = new ArrayList<>();
-        accounts=accountRepository.findAllByUserId(userId);
-        return accounts;
-    }
-
-    /**총 잔액*/
-    @Override
-    public double getTotalBalance(String userId) {
-        accountView.startBalancePrint(userId);
-        double totalBalance=0.0;
-        List<Account> accounts = getAccountsByUserId(userId);
-        Iterator<Account> accountsIterator = accounts.iterator();
-        while(accountsIterator.hasNext()) {
-            Account account = accountsIterator.next();
-            accountView.printBalance(account.getAccountNumber(),account.getBalance());
-            totalBalance+=account.getBalance();
+    public void accountNumList(String userId){
+        List<Account> accounts =accountRepository.findAllByUserId(userId);
+        for(Account account : accounts){
+            accountView.printAccountList(account);
         }
-        accountView.printTotalBalance(totalBalance);
-        return totalBalance;
     }
-
 
     /**계좌번호 중복 확인*/
     public boolean checkAccountNum(String accountNumber){
@@ -128,6 +111,7 @@ public class AccountServiceImpl implements AccountService {
         String changeName = accountView.printSetName();
         account.setName(changeName);
     }
+
 
 
 }

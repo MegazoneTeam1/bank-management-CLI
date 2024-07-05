@@ -1,6 +1,7 @@
 package service;
 
 import domain.User.User;
+import domain.User.UserBuilder;
 import repository.UserRepository;
 import repository.UserRepositoryImpl;
 import view.UserView;
@@ -38,9 +39,20 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    // 미구현
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateUser(String userId) {
+        User user = userRepository.findById(userId);
+        String newPhoneNumber = userView.updatePhoneNumberPrint();
+        user.setPhoneNumber(newPhoneNumber);
+        String newPassword = userView.updatePasswordPrint();
+
+        if (newPassword.length() != LENGTH_PASSWORD) {
+            userView.reEnterPassword();
+        } else {
+            user.setPassword(newPassword);
+            userView.updateUserPrint();
+            System.out.println("gd");
+        }
         return true;
     }
 
@@ -110,7 +122,12 @@ public class UserServiceImpl implements UserService {
 
     public void signUp() {
 
-        User newUser = new User(inputName(), inputPhoneNumber(), inputID(), inputPassword());
+        User newUser = new UserBuilder()
+            .name(inputName())
+            .phoneNumber(inputPhoneNumber())
+            .id(inputID())
+            .password(inputPassword())
+            .build();
 
         if (registerUser(newUser)) {
             userView.successSignup();

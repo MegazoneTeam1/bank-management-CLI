@@ -1,6 +1,7 @@
 package domain.Account;
 
 public class Account {
+
     private final String accountNumber;
     private final String password;
     private String name;
@@ -16,16 +17,31 @@ public class Account {
         this.userId = userId;
     }
 
-    public String getAccountNumber() {return accountNumber;}
-    public String getPassword() {return password;}
-    public double getBalance() {return balance;}
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public String getUserId() {return userId;}
-    public String getName() {return name;}
+    public String getUserId() {
+        return userId;
+    }
 
-    public void setName(String name) {this.name = name;}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

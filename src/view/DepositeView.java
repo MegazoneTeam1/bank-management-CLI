@@ -46,11 +46,13 @@ public class DepositeView {
     public void depositsuccess(){
         PrintUtil.println("입금이 성공적으로 되었습니다.");
     }
+    public void insufficientBalance() {PrintUtil.println("잔액이 부족합니다");}
     // 출금 성공
     public void withdrawSuccess(){
         PrintUtil.println("출금이 성공적으로 되었습니다.");
     }
     }
+
 
 
 
