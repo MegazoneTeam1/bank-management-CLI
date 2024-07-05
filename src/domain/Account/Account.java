@@ -8,7 +8,7 @@ public class Account {
     private final String userId;
 
 
-    public Account(String accountNumber, String password, String name, String userId) {
+    protected Account(String accountNumber, String password, String name, String userId) {
         this.accountNumber = accountNumber;
         this.password = password;
         this.name = name;
