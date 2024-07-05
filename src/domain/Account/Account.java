@@ -19,6 +19,11 @@ public class Account {
     public String getAccountNumber() {return accountNumber;}
     public String getPassword() {return password;}
     public double getBalance() {return balance;}
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public String getUserId() {return userId;}
     public String getName() {return name;}
 
