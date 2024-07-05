@@ -1,6 +1,6 @@
 package service;
 
-import domain.User;
+import domain.User.User;
 
 public interface UserService {
     boolean registerUser(User user);

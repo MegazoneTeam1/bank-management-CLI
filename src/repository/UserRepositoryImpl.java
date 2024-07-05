@@ -1,6 +1,6 @@
 package repository;
 
-import domain.User;
+import domain.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findById(String id) {
             return users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
-    }
-
-    @Override
-    public void update(User user) {
     }
 
     @Override
