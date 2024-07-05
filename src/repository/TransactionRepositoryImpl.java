@@ -4,6 +4,7 @@ import domain.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+
 // 거래 내역 정보를 저장하는 저장소 !
 public class TransactionRepositoryImpl implements TransactionRepository {
     private static List<Transaction> transactions = new ArrayList<>();
@@ -18,4 +19,3 @@ public class TransactionRepositoryImpl implements TransactionRepository {
             return transactions.stream().filter(transaction -> transaction.getAccountNumber().equals(accountNumber)).toList();
         }
     }
-
