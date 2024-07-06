@@ -44,9 +44,9 @@ public class AccountView {
         PrintUtil.println("NULL : 없습니다.");
     }
 
-    public void printAccountList(Account account) {
-        PrintUtil.println("---------------------------------");
-        PrintUtil.println("         " + account.getName() + "(" + account.getAccountNumber() + ")"
-            + "\n         잔액 : " + account.getBalance());
+    public void printAccountList(Account account){
+        PrintUtil.println("----------"+account.getName()+"-----------");
+        PrintUtil.println("\t계좌 번호: "+account.getAccountNumber());
+        PrintUtil.println("\t\t잔액 : "+account.getBalance());
     }
 }

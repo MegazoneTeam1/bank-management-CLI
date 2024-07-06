@@ -51,7 +51,6 @@ public class UserServiceImpl implements UserService {
         } else {
             user.setPassword(newPassword);
             userView.updateUserPrint();
-            System.out.println("gd");
         }
         return true;
     }

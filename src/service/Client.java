@@ -2,7 +2,7 @@ package service;
 
 import domain.Account.AccountBuilder;
 import view.BankingView;
-import view.DepositeView;
+import view.DepositView;
 import view.MenuView;
 import view.TransactionView;
 import view.UserView;
@@ -13,7 +13,7 @@ public class Client {
     private final UserView userView = new UserView();
     private final BankingView bankingView = new BankingView();
     private final AccountService accountService = new AccountServiceImpl();
-    private final DepositeView depositeView = new DepositeView();
+    private final DepositView depositView = new DepositView();
     private final TransactionView transactionView = new TransactionView();
 
     private final TransactionServiceImpl transactionService= new TransactionServiceImpl();
@@ -29,7 +29,7 @@ public class Client {
                 case 2:
                     String id = userService.loginMenu();
                     if (!id.isEmpty()) {
-                        accountPage(id);;
+                        accountPage(id);
                     }
                     break;
                 case 3:
@@ -57,17 +57,17 @@ public class Client {
                         transactionView.getAccountNumberByClient());
                     break;
                 case 4:
-                    depositeView.startDeposite();
-                    String depoAccount = depositeView.depositeAccount();
-                    int depoAmount = depositeView.depositeAmount();
-                    transactionService.deposit(depoAccount,depoAmount);
+                    depositView.startDeposit();
+                    String depositAccount = depositView.depositAccount();
+                    int depositAmount = depositView.depositAmount();
+                    transactionService.deposit(depositAccount,depositAmount);
                     break;
                 case 5:
-                    depositeView.startWithdraw();
-                    String wdAccount = depositeView.withdrawAccount();
-                    String wdPassword = depositeView.withdrawPassword();
-                    int wdAmount = depositeView.withdrawAmount();
-                    transactionService.withdraw(wdAccount,wdPassword,wdAmount);
+                    depositView.startWithdraw();
+                    String withdrawAccount = depositView.withdrawAccount();
+                    String withdrawPassword = depositView.withdrawPassword();
+                    int withdrawAmount = depositView.withdrawAmount();
+                    transactionService.withdraw(withdrawAccount,withdrawPassword,withdrawAmount);
                     break;
                 case 6:
                     userService.updateUser(userId);

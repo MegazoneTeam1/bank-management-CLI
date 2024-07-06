@@ -5,7 +5,7 @@ import domain.Transaction;
 
 import repository.AccountRepositoryImpl;
 import repository.TransactionRepositoryImpl;
-import view.DepositeView;
+import view.DepositView;
 import view.PrintUtil;
 
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ import view.TransactionView;
 
 public class TransactionServiceImpl implements TransactionService {
 
-    private final static DepositeView depositeView = new DepositeView();
+    private final static DepositView DEPOSIT_VIEW = new DepositView();
     TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
 
     AccountRepositoryImpl accountRepository = new AccountRepositoryImpl();
@@ -27,13 +27,13 @@ public class TransactionServiceImpl implements TransactionService {
         Account account = accountRepository.findByAccountNumber(accountNumber);
         if (account != null) {
             account.setBalance(account.getBalance() + amount);
-            depositeView.depositsuccess();
+            DEPOSIT_VIEW.depositSuccess();
             LocalDate nowDate = LocalDate.now();
-            Transaction depoTrans = new Transaction(accountNumber, amount, nowDate, "입금", account.getBalance());
-            transactionRepository.save(depoTrans);
-            PrintUtil.println(depoTrans.toString());
+            Transaction depositTransaction = new Transaction(accountNumber, amount, nowDate, "입금", account.getBalance());
+            transactionRepository.save(depositTransaction);
+            PrintUtil.println(depositTransaction.toString());
         } else {
-            depositeView.nonSuccessDeposite();
+            DEPOSIT_VIEW.nonSuccessDeposit();
         }
         return false;
     }
@@ -48,17 +48,17 @@ public class TransactionServiceImpl implements TransactionService {
                 if(account.getBalance() >= amount){
                     account.setBalance(account.getBalance() - amount);}
                 else {
-                    depositeView.insufficientBalance();
+                    DEPOSIT_VIEW.insufficientBalance();
                 }
-                depositeView.withdrawSuccess();
+                DEPOSIT_VIEW.withdrawSuccess();
                 LocalDate nowDate = LocalDate.now();
-                Transaction withdrawTrans = new Transaction(accountNumber,amount,nowDate,"출금", account.getBalance());
-                transactionRepository.save(withdrawTrans);
+                Transaction withdrawTransaction = new Transaction(accountNumber,amount,nowDate,"출금", account.getBalance());
+                transactionRepository.save(withdrawTransaction);
             } else {
-                depositeView.nonEqualPassword();
+                DEPOSIT_VIEW.nonEqualPassword();
             }
         }else {
-            depositeView.nonSuccessDeposite();
+            DEPOSIT_VIEW.nonSuccessDeposit();
         }
         return false;
     }
