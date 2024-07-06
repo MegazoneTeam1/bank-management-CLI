@@ -4,8 +4,6 @@ import domain.Account.Account;
 import domain.Account.AccountBuilder;
 import repository.AccountRepositoryImpl;
 import view.AccountView;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {

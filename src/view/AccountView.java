@@ -36,18 +36,6 @@ public class AccountView {
         PrintUtil.println("설정한 비밀번호와 일치하지 않습니다.");
     }
 
-    public void startBalancePrint(String userId) {
-        PrintUtil.println(userId + "의 잔액조회입니다.");
-    }
-
-    public void printBalance(String accountNumber, Double balance) {
-        PrintUtil.println(accountNumber + "의 잔액은 " + balance);
-    }
-
-    public void printTotalBalance(Double totalBalance) {
-        PrintUtil.println("  총 액은 " + totalBalance + "입니다.");
-    }
-
     public String printSetName() {
         return PrintUtil.readLine("계좌의 이름을 적어주세요 : ");
     }
